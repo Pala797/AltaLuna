@@ -6,6 +6,9 @@ export class Task {
   id: string; 
 
   @Column()
+  fecha: Date;
+
+  @Column()
   puntuacion: string;
 
   @Column()

@@ -44,3 +44,5 @@ npm install @mui/icons-material instalo iconos
 npm install @emotion/styled           instalacion emotion para react  escribir css directamente en el archivo
 npm install @emotion/core  
 npm install @emotion/react 
+npm install react-bootstrap bootstrap    para instalar react-bootstrap
+npm install date-fns   para formato de fecha

@@ -16,9 +16,10 @@ export class TasksService {
     return this.taskRepository.find();
   }
 
-  async agregarTask( puntuacion:string, titulo: string, descripcion: string): Promise<Task> {
+  async agregarTask( fecha:Date, puntuacion:string, titulo: string, descripcion: string): Promise<Task> {
     const task = this.taskRepository.create({
-      id: uuidv4(), // 
+      id: uuidv4(),
+      fecha,
       puntuacion, 
       titulo,
       descripcion,
@@ -44,4 +45,19 @@ export class TasksService {
 
     return this.getTaskById(id);
   }
+
+  async buscar(filterDate: Date | null): Promise<Task[]> {
+    const allTasks = await this.getAllTasks();
+
+    if (!filterDate) {
+      return allTasks;
+    }
+
+    return allTasks.filter(task => {
+      const taskDate = new Date(task.fecha);
+      return taskDate.toISOString().split('T')[0] === filterDate.toISOString().split('T')[0];
+    });
+  }
+
+
 }
