@@ -67,7 +67,7 @@ const Calificaciones = () => {
     const [originalTasks, setOriginalTasks] = useState<Task[]>([]); 
     const [filterDate, setFilterDate] = useState<Date | null>(null)
     const [newTask, setNewTask] = useState<{ fecha: Date; puntuacion: string;  titulo: string; descripcion: string; }>({
-        fecha: new Date(2023, 7, 29),
+        fecha: new Date ,
         puntuacion:'',
         titulo: '',
         descripcion: '',
@@ -201,7 +201,9 @@ const borrarTasks = async (taskId: string) => {
   const buscar = async () => {
     try {
       if (filterDate) {
-        const formattedDate = format(filterDate, 'yyyy-MM-dd');
+        const selectedDate = new Date(filterDate);
+        selectedDate.setDate(selectedDate.getDate() + 1); // Sumar un día
+        const formattedDate = format(selectedDate, 'yyyy-MM-dd');
         const response = await fetch(
           `http://localhost:3000/tasks/filter-by-date?filterDate=${formattedDate}`,
           { mode: 'cors' }
@@ -213,6 +215,7 @@ const borrarTasks = async (taskId: string) => {
       console.error('Error fetching filtered tasks:', error);
     }
   };
+  
 // RETURN DE REACT 
   
 return (
@@ -344,7 +347,7 @@ return (
             variant="outlined"
             name="fecha"
             placeholder="fecha"
-            value={newTask.fecha.toISOString().split('T')[0]}
+            value={newTask.fecha}
             onChange={handleInputChange}
             required
           />

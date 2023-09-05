@@ -10,7 +10,7 @@ module.exports = {
           },
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, DELETE, PATCH',
+            value: 'GET, POST, DELETE, PATCH, QUERY',
           },
           {
             key: 'Access-Control-Allow-Headers',

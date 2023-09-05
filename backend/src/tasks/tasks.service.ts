@@ -46,18 +46,19 @@ export class TasksService {
     return this.getTaskById(id);
   }
 
-  async buscar(filterDate: Date | null): Promise<Task[]> {
+  async buscar(filterDate: string | null): Promise<Task[]> {
     const allTasks = await this.getAllTasks();
-
+  
     if (!filterDate) {
       return allTasks;
     }
-
+  
     return allTasks.filter(task => {
       const taskDate = new Date(task.fecha);
-      return taskDate.toISOString().split('T')[0] === filterDate.toISOString().split('T')[0];
+      const formattedTaskDate = taskDate.toISOString().split('T')[0];
+      return formattedTaskDate === filterDate;
     });
   }
-
+  
 
 }

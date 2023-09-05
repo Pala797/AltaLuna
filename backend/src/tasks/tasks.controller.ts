@@ -29,7 +29,7 @@ export class TasksController {
   }
 
   @Get('filter-by-date')
-  async buscar(@Query('filterDate') filterDate: Date | null) {
+  async buscar(@Query('filterDate') filterDate: string | null) {
     return this.tasksService.buscar(filterDate);
   }
 }
